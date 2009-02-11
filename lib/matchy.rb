@@ -11,11 +11,13 @@ module Matchy
     # Rails for example defines MiniTest, so only check for
     # defined?(MiniTest) would be malicious
     defined?(MiniTest) && defined?(MiniTest::Assertions) && 
-        (!defined?(Test::Unit::TestCase) || !(Test::Unit::TestCase < MiniTest::Assertions))
+        (!defined?(Test::Unit::TestCase) || (Test::Unit::TestCase < MiniTest::Assertions))
   end
+  
   def self.assertions_module
     minitest? ? MiniTest::Assertions : Test::Unit::Assertions
   end
+  
   def self.test_case_class
     minitest? ? MiniTest::Unit::TestCase : Test::Unit::TestCase
   end
