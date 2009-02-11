@@ -1,5 +1,6 @@
 require 'rubygems'
 require 'minitest/unit'
+FORCE_MINITEST = true
 load File.dirname(__FILE__) + '/../lib/matchy.rb'
 
 MiniTest::Unit.autorun

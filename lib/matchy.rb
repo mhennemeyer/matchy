@@ -8,10 +8,10 @@ module Matchy
     # This needs to be better.
     # How can we decide if we really have a 
     # suite of MiniTest Tests?
-    # Rails for example defines MiniTest, so only check for
+    # Rails for example defines MiniTest, so to only check for
     # defined?(MiniTest) would be malicious
-    defined?(MiniTest) && defined?(MiniTest::Assertions) && 
-        (!defined?(Test::Unit::TestCase) || (Test::Unit::TestCase < MiniTest::Assertions))
+    defined?(FORCE_MINITEST) || defined?(MiniTest) && defined?(MiniTest::Assertions) && 
+      (!defined?(Test::Unit::TestCase) || (Test::Unit::TestCase < MiniTest::Assertions))
   end
   
   def self.assertions_module
