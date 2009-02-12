@@ -1,6 +1,6 @@
 require File.dirname(__FILE__) + '/test_helper.rb'
 
-class TestEnumerableExpectations < Test::Unit::TestCase
+class TestEnumerableExpectations < Matchy.test_case_class
   def test_include
     [1,2,3,4].should include(4)
   end
@@ -8,7 +8,7 @@ class TestEnumerableExpectations < Test::Unit::TestCase
   def test_include_fail
     lambda {
       [1,2,3,4].should include(6)
-    }.should raise_error(Test::Unit::AssertionFailedError)
+    }.should raise_error(Matchy.assertion_failed_error)
   end
   
   def test_exclude
@@ -18,7 +18,7 @@ class TestEnumerableExpectations < Test::Unit::TestCase
   def test_exclude_fail
     lambda {
       [1,2,3,4].should exclude(4)
-    }.should raise_error(Test::Unit::AssertionFailedError)
+    }.should raise_error(Matchy.assertion_failed_error)
   end
   
   def test_multi_include
@@ -28,7 +28,7 @@ class TestEnumerableExpectations < Test::Unit::TestCase
   def test_multi_include_fail
     lambda {
       [1,2,3,4].should include(6,7,8)
-    }.should raise_error(Test::Unit::AssertionFailedError)
+    }.should raise_error(Matchy.assertion_failed_error)
   end
   
   def test_multi_exclude
@@ -38,7 +38,7 @@ class TestEnumerableExpectations < Test::Unit::TestCase
   def test_multi_exclude_fail
     lambda {
       [1,2,3,4].should exclude(2,3,4)
-    }.should raise_error(Test::Unit::AssertionFailedError)
+    }.should raise_error(Matchy.assertion_failed_error)
   end
   
   def test_negative_include
@@ -48,7 +48,7 @@ class TestEnumerableExpectations < Test::Unit::TestCase
   def test_negative_include_fail
     lambda {
       [1,2,3,4].should_not include(4)
-    }.should raise_error(Test::Unit::AssertionFailedError)
+    }.should raise_error(Matchy.assertion_failed_error)
   end
   
   def test_negative_exclude
@@ -58,7 +58,7 @@ class TestEnumerableExpectations < Test::Unit::TestCase
   def test_negative_exclude_fail
     lambda {
       [1,2,3,4].should_not exclude(6,7)
-    }.should raise_error(Test::Unit::AssertionFailedError)
+    }.should raise_error(Matchy.assertion_failed_error)
   end
   
   def test_include_fail_message

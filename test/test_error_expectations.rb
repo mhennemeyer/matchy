@@ -1,6 +1,6 @@
 require File.dirname(__FILE__) + '/test_helper.rb'
 
-class TestErrorExpectations < Test::Unit::TestCase
+class TestErrorExpectations < Matchy.test_case_class
   def test_raises_error
     lambda { raise "FAIL" }.should raise_error
   end
@@ -8,7 +8,7 @@ class TestErrorExpectations < Test::Unit::TestCase
   def test_raises_error_fail
     lambda {
       lambda { "WIN" }.should raise_error
-    }.should raise_error(Test::Unit::AssertionFailedError)
+    }.should raise_error(Matchy.assertion_failed_error)
   end
   
   def test_negative_raises_error
@@ -18,7 +18,7 @@ class TestErrorExpectations < Test::Unit::TestCase
   def test_negative_raises_error_fail
     lambda {
       lambda { raise "FAIL" }.should_not raise_error
-    }.should raise_error(Test::Unit::AssertionFailedError)
+    }.should raise_error(Matchy.assertion_failed_error)
   end
   
   def test_raises_specific_error
@@ -28,13 +28,13 @@ class TestErrorExpectations < Test::Unit::TestCase
   def test_raises_specific_error_fail_with_no_error
     lambda {
       lambda { "WIN" }.should raise_error(TypeError)
-    }.should raise_error(Test::Unit::AssertionFailedError)
+    }.should raise_error(Matchy.assertion_failed_error)
   end
   
   def test_raises_specific_error_fail_with_different_error
     lambda {
       lambda { raise StandardError }.should raise_error(TypeError)
-    }.should raise_error(Test::Unit::AssertionFailedError)
+    }.should raise_error(Matchy.assertion_failed_error)
   end
   
   def test_throws_symbol
@@ -48,7 +48,7 @@ class TestErrorExpectations < Test::Unit::TestCase
       lambda {
         throw :fail
       }.should throw_symbol(:win)
-    }.should raise_error(Test::Unit::AssertionFailedError)
+    }.should raise_error(Matchy.assertion_failed_error)
   end
   
   def test_negative_throws_symbol
@@ -63,7 +63,7 @@ class TestErrorExpectations < Test::Unit::TestCase
       lambda {
         throw :fail
       }.should_not throw_symbol(:fail)
-    }.should raise_error(Test::Unit::AssertionFailedError)
+    }.should raise_error(Matchy.assertion_failed_error)
   
   end
   

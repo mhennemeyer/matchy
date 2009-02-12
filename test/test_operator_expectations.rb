@@ -1,6 +1,6 @@
 require File.dirname(__FILE__) + '/test_helper.rb'
 
-class TestOperatorExpectations < Test::Unit::TestCase
+class TestOperatorExpectations < Matchy.test_case_class
   # EQUALS (==)
   def test_equals
     3.should == 3
@@ -9,7 +9,7 @@ class TestOperatorExpectations < Test::Unit::TestCase
   def test_equals_fails
     lambda {
       3.should == 5
-    }.should raise_error(Test::Unit::AssertionFailedError)
+    }.should raise_error(Matchy.assertion_failed_error)
   end
   
   def test_negative_equals
@@ -19,7 +19,7 @@ class TestOperatorExpectations < Test::Unit::TestCase
   def test_negative_equals_fails
     lambda {
       3.should_not == 3
-    }.should raise_error(Test::Unit::AssertionFailedError)
+    }.should raise_error(Matchy.assertion_failed_error)
   end
   
   # LESS THAN (<)
@@ -30,7 +30,7 @@ class TestOperatorExpectations < Test::Unit::TestCase
   def test_less_than_fails
     lambda {
       4.should < 3
-    }.should raise_error(Test::Unit::AssertionFailedError)
+    }.should raise_error(Matchy.assertion_failed_error)
   end
   
   def test_less_than_equals
@@ -40,7 +40,7 @@ class TestOperatorExpectations < Test::Unit::TestCase
   def test_negative_less_than_fails
     lambda {
       4.should_not < 5
-    }.should raise_error(Test::Unit::AssertionFailedError)
+    }.should raise_error(Matchy.assertion_failed_error)
   end 
   
   # GREATER THAN (>)
@@ -51,7 +51,7 @@ class TestOperatorExpectations < Test::Unit::TestCase
   def test_greater_than_fails
     lambda {
       4.should > 5
-    }.should raise_error(Test::Unit::AssertionFailedError)
+    }.should raise_error(Matchy.assertion_failed_error)
   end
   
   def test_greater_than_equals
@@ -61,7 +61,7 @@ class TestOperatorExpectations < Test::Unit::TestCase
   def test_negative_greater_than_fails
     lambda {
       4.should_not > 3
-    }.should raise_error(Test::Unit::AssertionFailedError)
+    }.should raise_error(Matchy.assertion_failed_error)
   end
   
   # LESS THAN EQUAL (<=)
@@ -76,7 +76,7 @@ class TestOperatorExpectations < Test::Unit::TestCase
   def test_less_than_equal_fails
     lambda {
       4.should <= 3
-    }.should raise_error(Test::Unit::AssertionFailedError)
+    }.should raise_error(Matchy.assertion_failed_error)
   end
   
   def test_negative_less_than_equal
@@ -86,7 +86,7 @@ class TestOperatorExpectations < Test::Unit::TestCase
   def test_negative_less_than_equal_fails
     lambda {
       4.should_not <= 5
-    }.should raise_error(Test::Unit::AssertionFailedError)
+    }.should raise_error(Matchy.assertion_failed_error)
   end
   
   # GREATER THAN EQUALS (>=)
@@ -101,7 +101,7 @@ class TestOperatorExpectations < Test::Unit::TestCase
   def test_greater_than_equal_fails
     lambda {
       4.should >= 5
-    }.should raise_error(Test::Unit::AssertionFailedError)
+    }.should raise_error(Matchy.assertion_failed_error)
   end
   
   def test_negative_greater_than_equal_equals
@@ -111,7 +111,7 @@ class TestOperatorExpectations < Test::Unit::TestCase
   def test_negative_greater_than_equal_fails
     lambda {
       4.should_not >= 3
-    }.should raise_error(Test::Unit::AssertionFailedError)
+    }.should raise_error(Matchy.assertion_failed_error)
   end
   
   # MATCHES (=~)
@@ -122,7 +122,7 @@ class TestOperatorExpectations < Test::Unit::TestCase
   def test_matches_fails
     lambda {
       "d00d ur 1337".should =~ /world/
-    }.should raise_error(Test::Unit::AssertionFailedError)
+    }.should raise_error(Matchy.assertion_failed_error)
   end
   
   def test_negative_matches
@@ -132,7 +132,7 @@ class TestOperatorExpectations < Test::Unit::TestCase
   def test_negative_matches_fails
     lambda {
       "it's a freak out!".should_not =~ /freak/
-    }.should raise_error(Test::Unit::AssertionFailedError)
+    }.should raise_error(Matchy.assertion_failed_error)
   end
   
   def test_fail_message

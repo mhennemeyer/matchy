@@ -1,6 +1,6 @@
 require File.dirname(__FILE__) + '/test_helper.rb'
 
-class TestChangeExpectations < Test::Unit::TestCase
+class TestChangeExpectations < Matchy.test_case_class
   def test_change
     var = 1
     lambda {var += 1}.should change {var}
