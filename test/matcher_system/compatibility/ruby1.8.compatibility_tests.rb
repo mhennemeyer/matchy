@@ -1,7 +1,8 @@
-# Eval this file with ruby 1.9
-
-require File.dirname(__FILE__) + '/../lib/matchy.rb'
-class TestAThing < MiniTest::Unit::TestCase
+# Eval this file with ruby 1.8
+require 'rubygems'
+require 'test/unit'
+require File.dirname(__FILE__) + '/../../../lib/matchy.rb'
+class TestAThing < Test::Unit::TestCase
   
   def setup
     @obj = Object.new
@@ -155,7 +156,7 @@ class TestAThing < MiniTest::Unit::TestCase
     def @obj.something?
       false
     end
-    lambda {@obj.should be_something}.should raise_error(MiniTest::Assertion)
+    lambda {@obj.should be_something}.should raise_error(Test::Unit::AssertionFailedError)
   end
   
   def test_negative_be_something_method_missing_pass
@@ -169,7 +170,7 @@ class TestAThing < MiniTest::Unit::TestCase
     def @obj.something?
       true
     end
-    lambda {@obj.should_not be_something}.should raise_error(MiniTest::Assertion)
+    lambda {@obj.should_not be_something}.should raise_error(Test::Unit::AssertionFailedError)
   end
   
   def test_be_something_method_missing_fail_message
@@ -206,7 +207,7 @@ class TestAThing < MiniTest::Unit::TestCase
     def @obj.something?(arg)
       false
     end
-    lambda {@obj.should be_something(1)}.should raise_error(MiniTest::Assertion)
+    lambda {@obj.should be_something(1)}.should raise_error(Test::Unit::AssertionFailedError)
   end
   
   def test_negative_be_something_method_missing_pass
@@ -220,7 +221,7 @@ class TestAThing < MiniTest::Unit::TestCase
     def @obj.something?(arg)
       true
     end
-    lambda {@obj.should_not be_something(1)}.should raise_error(MiniTest::Assertion)
+    lambda {@obj.should_not be_something(1)}.should raise_error(Test::Unit::AssertionFailedError)
   end
   
   def test_be_something_method_missing_fail_message
@@ -407,7 +408,7 @@ class TestAThing < MiniTest::Unit::TestCase
   def test_include_fail
     lambda {
       [1,2,3,4].should include(6)
-    }.should raise_error(MiniTest::Assertion)
+    }.should raise_error(Test::Unit::AssertionFailedError)
   end
   
   def test_exclude
@@ -417,7 +418,7 @@ class TestAThing < MiniTest::Unit::TestCase
   def test_exclude_fail
     lambda {
       [1,2,3,4].should exclude(4)
-    }.should raise_error(MiniTest::Assertion)
+    }.should raise_error(Test::Unit::AssertionFailedError)
   end
   
   def test_multi_include
@@ -427,7 +428,7 @@ class TestAThing < MiniTest::Unit::TestCase
   def test_multi_include_fail
     lambda {
       [1,2,3,4].should include(6,7,8)
-    }.should raise_error(MiniTest::Assertion)
+    }.should raise_error(Test::Unit::AssertionFailedError)
   end
   
   def test_multi_exclude
@@ -437,7 +438,7 @@ class TestAThing < MiniTest::Unit::TestCase
   def test_multi_exclude_fail
     lambda {
       [1,2,3,4].should exclude(2,3,4)
-    }.should raise_error(MiniTest::Assertion)
+    }.should raise_error(Test::Unit::AssertionFailedError)
   end
   
   def test_negative_include
@@ -447,7 +448,7 @@ class TestAThing < MiniTest::Unit::TestCase
   def test_negative_include_fail
     lambda {
       [1,2,3,4].should_not include(4)
-    }.should raise_error(MiniTest::Assertion)
+    }.should raise_error(Test::Unit::AssertionFailedError)
   end
   
   def test_negative_exclude
@@ -457,7 +458,7 @@ class TestAThing < MiniTest::Unit::TestCase
   def test_negative_exclude_fail
     lambda {
       [1,2,3,4].should_not exclude(6,7)
-    }.should raise_error(MiniTest::Assertion)
+    }.should raise_error(Test::Unit::AssertionFailedError)
   end
   
   def test_include_fail_message
@@ -496,7 +497,7 @@ class TestAThing < MiniTest::Unit::TestCase
   def test_raises_error_fail
     lambda {
       lambda { "WIN" }.should raise_error
-    }.should raise_error(MiniTest::Assertion)
+    }.should raise_error(Test::Unit::AssertionFailedError)
   end
   
   def test_raise_error_negative_raises_error
@@ -506,7 +507,7 @@ class TestAThing < MiniTest::Unit::TestCase
   def test_raise_error_negative_raises_error_fail
     lambda {
       lambda { raise "FAIL" }.should_not raise_error
-    }.should raise_error(MiniTest::Assertion)
+    }.should raise_error(Test::Unit::AssertionFailedError)
   end
   
   def test_raise_error_raises_specific_error
@@ -516,13 +517,13 @@ class TestAThing < MiniTest::Unit::TestCase
   def test_raise_error_raises_specific_error_fail_with_no_error
     lambda {
       lambda { "WIN" }.should raise_error(TypeError)
-    }.should raise_error(MiniTest::Assertion)
+    }.should raise_error(Test::Unit::AssertionFailedError)
   end
   
   def test_raise_error_raises_specific_error_fail_with_different_error
     lambda {
       lambda { raise StandardError }.should raise_error(TypeError)
-    }.should raise_error(MiniTest::Assertion)
+    }.should raise_error(Test::Unit::AssertionFailedError)
   end
   
   def test_raise_error_error_fail_message
@@ -591,7 +592,7 @@ class TestAThing < MiniTest::Unit::TestCase
       lambda {
         throw :fail
       }.should throw_symbol(:win)
-    }.should raise_error(MiniTest::Assertion)
+    }.should raise_error(Test::Unit::AssertionFailedError)
   end
   
   def test_negative_throws_symbol
@@ -606,7 +607,7 @@ class TestAThing < MiniTest::Unit::TestCase
       lambda {
         throw :fail
       }.should_not throw_symbol(:fail)
-    }.should raise_error(MiniTest::Assertion)
+    }.should raise_error(Test::Unit::AssertionFailedError)
   
   end
   
