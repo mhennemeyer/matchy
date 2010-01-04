@@ -16,288 +16,288 @@ class TestTruthExpectations < Matchy.test_case_class
     @obj = Object.new
   end
   
-  def test_equal
+  test "equal" do
     3.should equal(3)
   end
 
-  def test_negative_equal
+  test "negative equal" do
     instance = String.new
     
     instance.should_not equal(String.new)
   end
   
-  def test_equal_fail
+  test "equal fail" do
     lambda {
       3.should equal(4)
     }.should raise_error(Matchy.assertion_failed_error)
   end
   
-  def test_negative_equal_fail
+  test "negative equal fail" do
     lambda {
       3.should_not equal(3)
     }.should raise_error(Matchy.assertion_failed_error)
   end
 
-  def test_eql
+  test "eql" do
     3.should eql(3)
   end
   
-  def test_eql_array
+  test "eql array" do
     [1,2,3].should eql([1,2,3])
   end
   
-  def test_negative_eql
+  test "negative eql" do
     3.should_not eql(9)
   end
   
-  def test_eql_fail
+  test "eql fail" do
     lambda {
       3.should eql(13)
     }.should raise_error(Matchy.assertion_failed_error)
   end
   
-  def test_negative_eql_fail
+  test "negative eql fail" do
     lambda {
       3.should_not eql(3)
     }.should raise_error(Matchy.assertion_failed_error)
   end
   
-  def test_exists
+  test "exists" do
     thing = Exister.new(true)
     thing.should exist
   end
   
-  def test_negative_exists
+  test "negative exists" do
     thing = Exister.new(false)
     thing.should_not exist
   end
   
-  def test_exists_fail
+  test "exists fail" do
     lambda {
       thing = Exister.new(false)
       thing.should exist
     }.should raise_error(Matchy.assertion_failed_error)
   end
   
-  def test_negative_exists_fail
+  test "negative exists fail" do
     lambda {
       thing = Exister.new(true)
       thing.should_not exist
     }.should raise_error(Matchy.assertion_failed_error)
   end
   
-  def test_be
+  test "be" do
     true.should be(true)
   end
   
-  def test_be_array
+  test "be array" do
     [1,2,3].should be([1,2,3])
   end
   
-  def test_negative_be
+  test "negative be" do
     true.should_not be(false)
   end
   
-  def test_be_fail
+  test "be fail" do
     lambda {
       true.should be(false)
     }.should raise_error(Matchy.assertion_failed_error)
   end
   
-  def test_be_close
+  test "be close" do
     (5.0 - 2.0).should be_close(3.0)
   end
   
-  def test_be_close_with_delta
+  test "be close with delta" do
     (5.0 - 2.0).should be_close(3.0, 0.2)
   end
   
-  def test_be_close_fail
+  test "be close fail" do
     lambda {
       (19.0 - 13.0).should be_close(33.04)
     }.should raise_error(Matchy.assertion_failed_error)
   end
   
-  def test_be_close_with_delta_fail
+  test "be close with delta fail" do
     lambda {
       (19.0 - 13.0).should be_close(6.0, 0.0)
     }.should raise_error(Matchy.assertion_failed_error)
   end
   
-  def test_satisfy
+  test "satisfy" do
     13.should satisfy(lambda {|i| i < 15})
   end
   
-  def test_negative_satisfy
+  test "negative satisfy" do
     13.should_not satisfy(lambda {|i| i < 10})
   end
   
-  def test_satisfy_fail
+  test "satisfy fail" do
     lambda {
       13.should satisfy(lambda {|i| i > 15})
     }.should raise_error(Matchy.assertion_failed_error)
   end
   
-  def test_negative_satisfy_fail
+  test "negative satisfy fail" do
     lambda {
       13.should_not satisfy(lambda {|i| i < 15})
     }.should raise_error(Matchy.assertion_failed_error)
   end
   
-  def test_equal_fail_message
+  test "equal fail message" do
     obj = equal(4)
     obj.matches?(5)
     
     obj.failure_message.should be("Expected 5 to return true for equal?, with '4'.")
   end
   
-  def test_equal_negative_fail_message
+  test "equal negative fail message" do
     obj = equal(5)
     obj.matches?(5)
     
     obj.negative_failure_message.should be("Expected 5 to not return true for equal?, with '5'.")
   end
   
-  def test_eql_fail_message
+  test "eql fail message" do
     obj = eql(4)
     obj.matches?(5)
     
     obj.failure_message.should be("Expected 5 to return true for eql?, with '4'.")
   end
   
-  def test_eql_negative_fail_message_for_eql
+  test "eql negative fail message for eql" do
     obj = eql(5)
     obj.matches?(5)
     
     obj.negative_failure_message.should be("Expected 5 to not return true for eql?, with '5'.")
   end
   
-  def test_exist_fail_message
+  test "exist fail message" do
     obj = exist
     obj.matches?(Exister.new(false))
     
     obj.failure_message.should =~ /Expected #<(.*)> to return true for exist?./
   end
   
-  def test_exist_negative_fail_message
+  test "exist negative fail message" do
     obj = exist
     obj.matches?(Exister.new(true))
     
     obj.negative_failure_message.should =~ /Expected #<(.*)> to not return true for exist?./
   end
   
-  def test_be_close_fail_message
+  test "be close fail message" do
     obj = be_close(3.0)
     obj.matches?(6.0)
     
     obj.failure_message.should be("Expected 6.0 to be close to 3.0 (delta: 0.3).")
   end
   
-  def test_be_close_negative_fail_message
+  test "be close negative fail message" do
     obj = be_close(5.0)
     obj.matches?(5.0)
     
     obj.negative_failure_message.should be("Expected 5.0 to not be close to 5.0 (delta: 0.3).")
   end
   
-  def test_be_fail_message
+  test "be fail message" do
     obj = be(4)
     obj.matches?(5)
     
     obj.failure_message.should be("Expected 5 to be 4.")
   end
   
-  def test_be_negative_fail_message
+  test "be negative fail message" do
     obj = be(5)
     obj.matches?(5)
     
     obj.negative_failure_message.should be("Expected 5 to not be 5.")
   end
   
-  def test_satisfy_fail_message
+  test "satisfy fail message" do
     obj = satisfy(lambda {|x| x == 4})
     obj.matches?(6)
     
     obj.failure_message.should be("Expected 6 to satisfy given block.")
   end
   
-  def test_eql_negative_fail_message_for_matches
+  test "eql negative fail message for matches" do
     obj = satisfy(lambda {|x| x == 4})
     obj.matches?(4)
     
     obj.negative_failure_message.should be("Expected 4 to not satisfy given block.")
   end
   
-  def test_kind_of
+  test "kind of" do
     3.should be_kind_of(Fixnum)
   end
   
-  def test_kind_of_fail
+  test "kind of fail" do
     lambda {
       3.should be_kind_of(Hash)
     }.should raise_error(Matchy.assertion_failed_error)
   end
   
-  def test_negative_kind_of
+  test "negative kind of" do
     3.should_not be_kind_of(Hash)
   end
   
-  def test_negative_kind_of_fail
+  test "negative kind of fail" do
     lambda {
       3.should_not be_kind_of(Fixnum)
     }.should raise_error(Matchy.assertion_failed_error)
   end
 
-  def test_respond_to
+  test "respond to" do
     "foo".should respond_to(:length)
   end
   
-  def test_respond_to_fail
+  test "respond to fail" do
     lambda {
       "foo".should respond_to(:nonexistant_method)
     }.should raise_error(Matchy.assertion_failed_error)
   end
   
-  def test_negative_respond_to
+  test "negative respond to" do
     "foo".should_not respond_to(:nonexistant_method)
   end
   
-  def test_negative_respond_to_fail
+  test "negative respond to fail" do
     lambda {
       "foo".should_not respond_to(:length)
     }.should raise_error(Matchy.assertion_failed_error)
   end
   
   # be_something
-  def test_positive_be_something_method_missing_pass
+  test "positive be something method missing pass" do
     def @obj.something?
       true
     end
     @obj.should be_something
   end
   
-  def test_positive_be_something_method_missing_fails
+  test "positive be something method missing fails" do
     def @obj.something?
       false
     end
     lambda {@obj.should be_something}.should raise_error(Matchy.assertion_failed_error)
   end
   
-  def test_negative_be_something_method_missing_pass
+  test "negative be something method missing pass" do
     def @obj.something?
       false
     end
     @obj.should_not be_something
   end
   
-  def test_negative_be_something_method_missing_fails
+  test "negative be something method missing fails" do
     def @obj.something?
       true
     end
     lambda {@obj.should_not be_something}.should raise_error(Matchy.assertion_failed_error)
   end
   
-  def test_be_something_method_missing_fail_message
+  test "be something method missing fail message" do
     obj = "foo"
     def obj.something?
       true
@@ -308,7 +308,7 @@ class TestTruthExpectations < Matchy.test_case_class
     matcher_obj.failure_message.should be("Expected \"foo\" to return true for something?, with 'no args'.")
   end
   
-  def test_be_something_method_missing_negative_fail_message
+  test "be something method missing negative fail message" do
     obj = "foo"
     def obj.something?
       false
@@ -320,35 +320,35 @@ class TestTruthExpectations < Matchy.test_case_class
   end
   
   # be_something(arg)
-  def test_positive_be_something_with_arg_method_missing_pass
+  test "positive be something with arg method missing pass" do
     def @obj.something?(arg)
       true
     end
     @obj.should be_something(1)
   end
   
-  def test_positive_be_something_with_arg_method_missing_fails
+  test "positive be something with arg method missing fails" do
     def @obj.something?(arg)
       false
     end
     lambda {@obj.should be_something(1)}.should raise_error(Matchy.assertion_failed_error)
   end
   
-  def test_negative_be_something_method_missing_pass
+  test "negative be something method missing pass" do
     def @obj.something?(arg)
       false
     end
     @obj.should_not be_something(1)
   end
   
-  def test_negative_be_something_method_missing_fails
+  test "negative be something method missing fails" do
     def @obj.something?(arg)
       true
     end
     lambda {@obj.should_not be_something(1)}.should raise_error(Matchy.assertion_failed_error)
   end
   
-  def test_be_something_method_missing_fail_message
+  test "be something method missing fail message" do
     obj = "foo"
     def obj.something?(arg)
       true
@@ -359,7 +359,7 @@ class TestTruthExpectations < Matchy.test_case_class
     matcher_obj.failure_message.should be("Expected \"foo\" to return true for something?, with '1'.")
   end
   
-  def test_be_something_method_missing_negative_fail_message
+  test "be something method missing negative fail message" do
     obj = "foo"
     def obj.something?(arg)
       false

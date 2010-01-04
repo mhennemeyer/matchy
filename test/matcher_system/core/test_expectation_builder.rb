@@ -6,22 +6,22 @@ class TestExpectationBuilder < Matchy.test_case_class
     @obj = Object.new
   end
   
-  def test_should
+  test "should" do
     exp = Matchy::ExpectationBuilder.build_expectation(true, nil, @obj)
     exp.send(:==, @obj)
   end
   
-  def test_should_fails
+  test "should fails" do
     expect_1 = Matchy::ExpectationBuilder.build_expectation(true, nil, 1)
     lambda {expect_1.send(:==, 2)}.should raise_error
   end
   
-  def test_should_not
+  test "should not" do
     exp = Matchy::ExpectationBuilder.build_expectation(false, nil, @obj)
     exp.send(:==, 1)
   end
   
-  def test_should_not_fails
+  test "should not fails" do
     expect_not_1 = Matchy::ExpectationBuilder.build_expectation(false, nil, 1)
     lambda {expect_not_1.send(:==, 1)}.should raise_error
   end

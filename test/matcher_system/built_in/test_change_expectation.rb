@@ -9,47 +9,47 @@ testing "change matcher" do
     lambda {@var += 1}.should change {@var}
   end
   
-  def test_change_fails
+  test "change fails" do
     lambda do
       lambda { }.should change {@var} 
     end.should raise_error
   end
   
-  def test_change_by
+  test "change by" do
     lambda {@var += 1}.should change {@var}.by(1)
   end
 
-  def test_change_by_fails
+  test "change by fails" do
     lambda do
       lambda {@var += 2}.should change {@var}.by(1) 
     end.should raise_error
   end
 
-  def test_change_by_at_least
+  test "change by at least" do
     lambda {@var += 1}.should change {@var}.by_at_least(1)
   end
 
-  def test_change_by_at_least_fails
+  test "change by at least fails" do
     lambda do
       lambda {@var += 0.9}.should change {@var}.by_at_least(1)
     end.should raise_error
   end
 
-  def test_change_by_at_most
+  test "change by at most" do
     lambda {@var += 1}.should change {@var}.by_at_most(1)
   end
 
-  def test_change_by_at_most_fails
+  test "change by at most fails" do
     lambda do
       lambda {@var += 1.1}.should change {@var}.by_at_most(1)
     end.should raise_error
   end
 
-  def test_change_from_to
+  test "change from to" do
     lambda {@var += 1}.should change {@var}.from(1).to(2)
   end
 
-  def test_change_from_to_fails
+  test "change from to fails" do
     lambda do
       lambda {@var += 1.1}.should change {@var}.from(1).to(2)
     end.should raise_error

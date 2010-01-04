@@ -1,4 +1,4 @@
-# parses all test files below current folder 
+# parses all test files (test_...rb or ..._tests.rb) below current folder 
 # and replaces all occurences of
 # def test_whatever
 # with 
@@ -9,7 +9,7 @@ keyword = "test"
 
 dir = File.dirname(__FILE__)
 Dir[File.expand_path("#{dir}/**/*.rb")].uniq.each do |file|
-  if (file =~ /\/test_\w+\.rb$/) && (file !~ /\/test_helper\.rb$/)
+  if ((file =~ /\/test_\w+\.rb$/) || (file =~ /\w+_tests\.rb$/)) && (file !~ /\/test_helper\.rb$/)
     puts file
     File.open(file,File::RDWR) do |f|
       new_lines = []
@@ -22,7 +22,8 @@ Dir[File.expand_path("#{dir}/**/*.rb")].uniq.each do |file|
         end
         new_lines << line
       end
-      puts new_lines
+      f.pos = 0
+      f.puts new_lines
     end
   end
 end

@@ -2,140 +2,140 @@ require File.dirname(__FILE__) + '/../test_helper.rb'
 
 class TestOperatorExpectations < Matchy.test_case_class
   # EQUALS (==)
-  def test_equals
+  test "equals" do
     3.should == 3
   end
   
-  def test_equals_fails
+  test "equals fails" do
     lambda {
       3.should == 5
     }.should raise_error(Matchy.assertion_failed_error)
   end
   
-  def test_negative_equals
+  test "negative equals" do
     3.should_not == 4
   end
   
-  def test_negative_equals_fails
+  test "negative equals fails" do
     lambda {
       3.should_not == 3
     }.should raise_error(Matchy.assertion_failed_error)
   end
   
   # LESS THAN (<)
-  def test_less_than
+  test "less than" do
     3.should < 5
   end
   
-  def test_less_than_fails
+  test "less than fails" do
     lambda {
       4.should < 3
     }.should raise_error(Matchy.assertion_failed_error)
   end
   
-  def test_less_than_equals
+  test "less than equals" do
     3.should_not < 2
   end
   
-  def test_negative_less_than_fails
+  test "negative less than fails" do
     lambda {
       4.should_not < 5
     }.should raise_error(Matchy.assertion_failed_error)
   end 
   
   # GREATER THAN (>)
-  def test_greater_than
+  test "greater than" do
     3.should > 2
   end
   
-  def test_greater_than_fails
+  test "greater than fails" do
     lambda {
       4.should > 5
     }.should raise_error(Matchy.assertion_failed_error)
   end
   
-  def test_greater_than_equals
+  test "greater than equals" do
     3.should_not > 5
   end
   
-  def test_negative_greater_than_fails
+  test "negative greater than fails" do
     lambda {
       4.should_not > 3
     }.should raise_error(Matchy.assertion_failed_error)
   end
   
   # LESS THAN EQUAL (<=)
-  def test_less_than_equal
+  test "less than equal" do
     3.should <= 5
   end
   
-  def test_less_than_equal_equal
+  test "less than equal equal" do
     3.should <= 3
   end
   
-  def test_less_than_equal_fails
+  test "less than equal fails" do
     lambda {
       4.should <= 3
     }.should raise_error(Matchy.assertion_failed_error)
   end
   
-  def test_negative_less_than_equal
+  test "negative less than equal" do
     3.should_not <= 2
   end
   
-  def test_negative_less_than_equal_fails
+  test "negative less than equal fails" do
     lambda {
       4.should_not <= 5
     }.should raise_error(Matchy.assertion_failed_error)
   end
   
   # GREATER THAN EQUALS (>=)
-  def test_greater_than_equal
+  test "greater than equal" do
     3.should >= 2
   end
   
-  def test_greater_than_equal_equals
+  test "greater than equal equals" do
     3.should >= 3
   end
   
-  def test_greater_than_equal_fails
+  test "greater than equal fails" do
     lambda {
       4.should >= 5
     }.should raise_error(Matchy.assertion_failed_error)
   end
   
-  def test_negative_greater_than_equal_equals
+  test "negative greater than equal equals" do
     3.should_not >= 5
   end
   
-  def test_negative_greater_than_equal_fails
+  test "negative greater than equal fails" do
     lambda {
       4.should_not >= 3
     }.should raise_error(Matchy.assertion_failed_error)
   end
   
   # MATCHES (=~)
-  def test_matches
+  test "matches" do
     "hey world".should =~ /world/
   end
   
-  def test_matches_fails
+  test "matches fails" do
     lambda {
       "d00d ur 1337".should =~ /world/
     }.should raise_error(Matchy.assertion_failed_error)
   end
   
-  def test_negative_matches
+  test "negative matches" do
     "1337@age".should_not =~ /434/
   end
   
-  def test_negative_matches_fails
+  test "negative matches fails" do
     lambda {
       "it's a freak out!".should_not =~ /freak/
     }.should raise_error(Matchy.assertion_failed_error)
   end
   
-  def test_fail_message
+  test "fail message" do
     obj = Matchy::Expectations::OperatorExpectation.new(3, true)
     
     def obj.flunk(msg)
@@ -145,7 +145,7 @@ class TestOperatorExpectations < Matchy.test_case_class
     (obj == 4).should == "Expected 3 to == 4."
   end
   
-  def test_negative_fail_message
+  test "negative fail message" do
     obj = Matchy::Expectations::OperatorExpectation.new(3, false)
     
     def obj.flunk(msg)

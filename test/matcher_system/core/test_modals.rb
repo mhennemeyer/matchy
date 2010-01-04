@@ -6,33 +6,33 @@ class TestModals < Matchy.test_case_class
     @bad_expectation = build_matcher() {|r,m,a| false}
   end
   
-  def test_should
+  test "should" do
     3.should(@expectation)
   end
   
-  def test_will
+  test "will" do
     3.will(@expectation)
   end
   
-  def test_should_not
+  test "should not" do
     3.should_not(@bad_expectation)
   end
   
-  def test_will_not
+  test "will not" do
     3.will_not(@bad_expectation)
   end
   
-  def test_wont
+  test "wont" do
     3.wont(@bad_expectation)
   end
   
-  def test_should_operator_expectation_returned
+  test "should operator expectation returned" do
     obj = 3.should
     assert_equal Matchy::Expectations::OperatorExpectation, obj.class
   end
   
   
-  def test_should_not_operator_expectation_returned
+  test "should not operator expectation returned" do
     obj = 3.should_not
     assert_equal Matchy::Expectations::OperatorExpectation, obj.class
   end

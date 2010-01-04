@@ -7,56 +7,56 @@ class TestMatcherBuilder < Matchy.test_case_class
     @obj = Object.new
   end
   
-  def test_matcher_responds_to_matches
+  test "matcher responds to matches" do
     block = lambda {|given, matcher, args| true}
     build_matcher(:m, &block).should respond_to(:matches?)
   end
   
-  def test_fail_positive
+  test "fail positive" do
     block = lambda {|given, matcher, args| false}
     lambda {@obj.should build_matcher(:m, &block)}.should raise_error
   end
   
-  def test_pass_positive
+  test "pass positive" do
     block = lambda {|given, matcher, args| true}
     @obj.should build_matcher(:m, &block)
   end
   
-  def test_fail_negative
+  test "fail negative" do
     block = lambda {|given, matcher, args| true}
     lambda {@obj.should_not build_matcher(:m, &block)}.should raise_error
   end
   
-  def test_pass_negative
+  test "pass negative" do
     block = lambda {|given, matcher, args| false}
     @obj.should_not build_matcher(:m, &block)
   end
   
-  def test_takes_arguments
+  test "takes arguments" do
     block = lambda {|given, matcher, args| $args = args; true}
     @obj.should build_matcher(:m,[1,2,3], &block)
     $args.should eql([1,2,3])
   end
   
-  def test_received_method
+  test "received method" do
     block = lambda {|given, matcher, args| $msgs = matcher.msgs; true}
     @obj.should build_matcher(:m, &block).method1
     $msgs[0].name.should eql(:method1)
   end
   
-  def test_received_method_takes_args
+  test "received method takes args" do
     block = lambda {|given, matcher, args| $msgs = matcher.msgs; true}
     @obj.should build_matcher(:m, &block).method1(1,2,3)
     $msgs[0].args.should eql([1,2,3])
   end
   
-  def test_received_method_takes_block
+  test "received method takes block" do
     block = lambda {|given, matcher, args| $msgs = matcher.msgs; true}
     @obj.should build_matcher(:m, &block).method1 { "Hello, World!"}
     $msgs[0].block.call.should eql("Hello, World!")
   end
   
-  def test_received_method_chained
+  test "received method chained" do
     block = lambda {|given, matcher, args| $msgs = matcher.msgs; true}
     @obj.should build_matcher(:m, &block).method1(1,2,3) { "Hello, World!"}.
       method2(4,5,6) { "Hello chained messages" }

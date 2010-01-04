@@ -9,171 +9,171 @@ class TestAThing < MiniTest::Unit::TestCase
   end
   
   # ==
-  def test_operator_eql_eql
+  test "operator eql eql" do
     1.should == 1
   end
   
-  def test_operator_eql_eql_fails
+  test "operator eql eql fails" do
     lambda {1.should == 2}.should raise_error
   end
   
-  def test_operator_eql_eql_negative
+  test "operator eql eql negative" do
     1.should_not == 2
   end
   
-  def test_operator_eql_eql_negative_fails
+  test "operator eql eql negative fails" do
     lambda {1.should_not == 1}.should raise_error
   end
   
   # ===
-  def test_operator_eql_eql_eql
+  test "operator eql eql eql" do
     1.should === 1
   end
   
-  def test_operator_eql_eql_eql_fails
+  test "operator eql eql eql fails" do
     lambda {1.should === 2}.should raise_error
   end
   
-  def test_operator_eql_eql_eql_negative
+  test "operator eql eql eql negative" do
     1.should_not === 2
   end
   
-  def test_operator_eql_eql_eql_negative_fails
+  test "operator eql eql eql negative fails" do
     lambda {1.should_not === 1}.should raise_error
   end
   
   # =~
-  def test_operator_eql_match
+  test "operator eql match" do
     "string".should =~ /in/
   end
   
-  def test_operator_eql_match_fails
+  test "operator eql match fails" do
     lambda {"string".should =~ /an/}.should raise_error
   end
   
-  def test_operator_eql_match_negative
+  test "operator eql match negative" do
     "string".should_not =~ /an/
   end
   
-  def test_operator_eql_match_negative_fails
+  test "operator eql match negative fails" do
     lambda {"string".should_not =~ /in/}.should raise_error
   end
   
   # <=
-  def test_operator_lt_eql
+  test "operator lt eql" do
     1.should <= 2
   end
   
-  def test_operator_lt_eql_fails
+  test "operator lt eql fails" do
     lambda {1.should <= 0}.should raise_error
   end
   
-  def test_operator_lt_eql_negative
+  test "operator lt eql negative" do
     1.should_not <= 0
   end
   
-  def test_operator_lt_eql_negative_fails
+  test "operator lt eql negative fails" do
     lambda {1.should_not <= 2}.should raise_error
   end
   
   # >=
-  def test_operator_gt_eql
+  test "operator gt eql" do
     1.should >= 0
   end
   
-  def test_operator_gt_eql_fails
+  test "operator gt eql fails" do
     lambda {1.should >= 2}.should raise_error
   end
   
-  def test_operator_gt_eql_negative
+  test "operator gt eql negative" do
     1.should_not >= 2
   end
   
-  def test_operator_gt_eql_negative_fails
+  test "operator gt eql negative fails" do
     lambda {1.should_not >= 0}.should raise_error
   end
   
   # <
-  def test_operator_lt
+  test "operator lt" do
     1.should < 2
   end
   
-  def test_operator_lt_fails
+  test "operator lt fails" do
     lambda {1.should < 0}.should raise_error
   end
   
-  def test_operator_lt_negative
+  test "operator lt negative" do
     1.should_not < 0
   end
   
-  def test_operator_lt_negative_fails
+  test "operator lt negative fails" do
     lambda {1.should_not < 2}.should raise_error
   end
   
   # >
-  def test_operator_gt
+  test "operator gt" do
     1.should > 0
   end
   
-  def test_operator_gt_fails
+  test "operator gt fails" do
     lambda {1.should > 2}.should raise_error
   end
   
-  def test_operator_gt_negative
+  test "operator gt negative" do
     1.should_not > 2
   end
   
-  def test_operator_gt_negative_fails
+  test "operator gt negative fails" do
     lambda {1.should_not > 0}.should raise_error
   end
   
   # be()
-  def test_be
+  test "be" do
     1.should be(1)
   end
   
-  def test_be_fails
+  test "be fails" do
     lambda {1.should be(2)}.should raise_error
   end
   
-  def test_be_negative
+  test "be negative" do
     1.should_not be(2)
   end
   
-  def test_be_negative_fails
+  test "be negative fails" do
     lambda {1.should_not be(1)}.should raise_error
   end
   
   # be_something
-  def test_positive_be_something_method_missing_pass
+  test "positive be something method missing pass" do
     def @obj.something?
       true
     end
     @obj.should be_something
   end
   
-  def test_positive_be_something_method_missing_fails
+  test "positive be something method missing fails" do
     def @obj.something?
       false
     end
     lambda {@obj.should be_something}.should raise_error(MiniTest::Assertion)
   end
   
-  def test_negative_be_something_method_missing_pass
+  test "negative be something method missing pass" do
     def @obj.something?
       false
     end
     @obj.should_not be_something
   end
   
-  def test_negative_be_something_method_missing_fails
+  test "negative be something method missing fails" do
     def @obj.something?
       true
     end
     lambda {@obj.should_not be_something}.should raise_error(MiniTest::Assertion)
   end
   
-  def test_be_something_method_missing_fail_message
+  test "be something method missing fail message" do
     obj = "foo"
     def obj.something?
       true
@@ -184,7 +184,7 @@ class TestAThing < MiniTest::Unit::TestCase
     matcher_obj.failure_message.should be("Expected \"foo\" to return true for something?, with 'no args'.")
   end
   
-  def test_be_something_method_missing_negative_fail_message
+  test "be something method missing negative fail message" do
     obj = "foo"
     def obj.something?
       false
@@ -196,35 +196,35 @@ class TestAThing < MiniTest::Unit::TestCase
   end
   
   # be_something(arg)
-  def test_positive_be_something_with_arg_method_missing_pass
+  test "positive be something with arg method missing pass" do
     def @obj.something?(arg)
       true
     end
     @obj.should be_something(1)
   end
   
-  def test_positive_be_something_with_arg_method_missing_fails
+  test "positive be something with arg method missing fails" do
     def @obj.something?(arg)
       false
     end
     lambda {@obj.should be_something(1)}.should raise_error(MiniTest::Assertion)
   end
   
-  def test_negative_be_something_method_missing_pass
+  test "negative be something method missing pass" do
     def @obj.something?(arg)
       false
     end
     @obj.should_not be_something(1)
   end
   
-  def test_negative_be_something_method_missing_fails
+  test "negative be something method missing fails" do
     def @obj.something?(arg)
       true
     end
     lambda {@obj.should_not be_something(1)}.should raise_error(MiniTest::Assertion)
   end
   
-  def test_be_something_method_missing_fail_message
+  test "be something method missing fail message" do
     obj = "foo"
     def obj.something?(arg)
       true
@@ -235,7 +235,7 @@ class TestAThing < MiniTest::Unit::TestCase
     matcher_obj.failure_message.should be("Expected \"foo\" to return true for something?, with '1'.")
   end
   
-  def test_be_something_method_missing_negative_fail_message
+  test "be something method missing negative fail message" do
     obj = "foo"
     def obj.something?(arg)
       false
@@ -247,60 +247,60 @@ class TestAThing < MiniTest::Unit::TestCase
   end
   
   # change
-  def test_change
+  test "change" do
     var = 1
     lambda {var += 1}.should change {var}
   end
   
-  def test_change_fails
+  test "change fails" do
     var = 1
     lambda do
       lambda { }.should change {var} 
     end.should raise_error
   end
   
-  def test_change_by
+  test "change by" do
     var = 1
     lambda {var += 1}.should change {var}.by(1)
   end
   
-  def test_change_by_fails
+  test "change by fails" do
     var = 1
     lambda do
       lambda {var += 2}.should change {var}.by(1) 
     end.should raise_error
   end
   
-  def test_change_by_at_least
+  test "change by at least" do
     var = 1
     lambda {var += 1}.should change {var}.by_at_least(1)
   end
   
-  def test_change_by_at_least_fails
+  test "change by at least fails" do
     var = 1
     lambda do
       lambda {var += 0.9}.should change {var}.by_at_least(1)
     end.should raise_error
   end
   
-  def test_change_by_at_most
+  test "change by at most" do
     var = 1
     lambda {var += 1}.should change {var}.by_at_most(1)
   end
   
-  def test_change_by_at_most_fails
+  test "change by at most fails" do
     var = 1
     lambda do
       lambda {var += 1.1}.should change {var}.by_at_most(1)
     end.should raise_error
   end
   
-  def test_change_from_to
+  test "change from to" do
     var = 1
     lambda {var += 1}.should change {var}.from(1).to(2)
   end
   
-  def test_change_from_to_fails
+  test "change from to fails" do
     var = 1
     lambda do
       lambda {var += 1.1}.should change {var}.from(1).to(2)
@@ -308,47 +308,47 @@ class TestAThing < MiniTest::Unit::TestCase
   end
   
   # def_matcher
-  def test_def_matcher_defines_method
+  test "def matcher defines method" do
     def_matcher :method_ do |given, matcher, args|
     end
     self.should respond_to(:method_)
   end
   
-  def test_def_matcher_object_responds_to_matches
+  test "def matcher object responds to matches" do
     def_matcher :method_ do |given, matcher, args|
     end
     method_.should respond_to(:matches?)
   end
   
-  def test_def_matcher_fail_positive
+  test "def matcher fail positive" do
     def_matcher :matcher do |given, matcher, args|
       false
     end
     lambda {1.should matcher}.should raise_error
   end
   
-  def test_def_matcher_pass_positive
+  test "def matcher pass positive" do
     def_matcher :matcher do |given, matcher, args|
       true
     end
     1.should matcher
   end
   
-  def test_def_matcher_fail_negative
+  test "def matcher fail negative" do
     def_matcher :matcher do |given, matcher, args|
       true
     end
     lambda {1.should_not matcher}.should raise_error
   end
   
-  def test_def_matcher_pass_negative
+  test "def matcher pass negative" do
     def_matcher :matcher do |given, matcher, args|
       false
     end
     1.should_not matcher
   end
   
-  def test_def_matcher_takes_arguments
+  test "def matcher takes arguments" do
     def_matcher :matcher do |given, matcher, args|
       $args = args
       true
@@ -357,7 +357,7 @@ class TestAThing < MiniTest::Unit::TestCase
     $args.should eql([1,2,3])
   end
   
-  def test_def_matcher_received_method
+  test "def matcher received method" do
     def_matcher :matcher do |given, matcher, args|
       $msgs = matcher.msgs
       true
@@ -366,7 +366,7 @@ class TestAThing < MiniTest::Unit::TestCase
     $msgs[0].name.should eql(:method1)
   end
   
-  def test_def_matcher_received_method_takes_args
+  test "def matcher received method takes args" do
     def_matcher :matcher do |given, matcher, args|
       $msgs = matcher.msgs
       true
@@ -375,7 +375,7 @@ class TestAThing < MiniTest::Unit::TestCase
     $msgs[0].args.should eql([1,2,3])
   end
   
-  def test_def_matcher_received_method_takes_block
+  test "def matcher received method takes block" do
     def_matcher :matcher do |given, matcher, args|
       $msgs = matcher.msgs
       true
@@ -384,7 +384,7 @@ class TestAThing < MiniTest::Unit::TestCase
     $msgs[0].block.call.should eql("Hello, World!")
   end
   
-  def test_def_matcher_received_method_chained
+  test "def matcher received method chained" do
     def_matcher :matcher do |given, matcher, args|
       $msgs = matcher.msgs
       true
@@ -401,88 +401,88 @@ class TestAThing < MiniTest::Unit::TestCase
   end
   
   # include/exclude
-  def test_include
+  test "include" do
     [1,2,3,4].should include(4)
   end
   
-  def test_include_fail
+  test "include fail" do
     lambda {
       [1,2,3,4].should include(6)
     }.should raise_error(MiniTest::Assertion)
   end
   
-  def test_exclude
+  test "exclude" do
     [1,2,3,4].should exclude(9)
   end
   
-  def test_exclude_fail
+  test "exclude fail" do
     lambda {
       [1,2,3,4].should exclude(4)
     }.should raise_error(MiniTest::Assertion)
   end
   
-  def test_multi_include
+  test "multi include" do
     [1,2,3,4].should include(1,2)
   end
   
-  def test_multi_include_fail
+  test "multi include fail" do
     lambda {
       [1,2,3,4].should include(6,7,8)
     }.should raise_error(MiniTest::Assertion)
   end
   
-  def test_multi_exclude
+  test "multi exclude" do
     [1,2,3,4].should exclude(13,14)
   end
   
-  def test_multi_exclude_fail
+  test "multi exclude fail" do
     lambda {
       [1,2,3,4].should exclude(2,3,4)
     }.should raise_error(MiniTest::Assertion)
   end
   
-  def test_negative_include
+  test "negative include" do
     [1,2,3,4].should_not include(9)
   end
   
-  def test_negative_include_fail
+  test "negative include fail" do
     lambda {
       [1,2,3,4].should_not include(4)
     }.should raise_error(MiniTest::Assertion)
   end
   
-  def test_negative_exclude
+  test "negative exclude" do
     [1,2,3,4].should_not exclude(3)
   end
   
-  def test_negative_exclude_fail
+  test "negative exclude fail" do
     lambda {
       [1,2,3,4].should_not exclude(6,7)
     }.should raise_error(MiniTest::Assertion)
   end
   
-  def test_include_fail_message
+  test "include fail message" do
     obj = include(1)
     obj.matches?([4,5,6])
     
     obj.failure_message.should be("Expected [4, 5, 6] to include [1].")
   end
   
-  def test_include_negative_fail_message
+  test "include negative fail message" do
     obj = include(1)
     obj.matches?([4,5,6])
     
     obj.negative_failure_message.should be("Expected [4, 5, 6] to not include [1].")
   end
   
-  def test_exclude_fail_message
+  test "exclude fail message" do
     obj = exclude(4)
     obj.matches?([4,5,6])
     
     obj.failure_message.should be("Expected [4, 5, 6] to exclude [4].")
   end
   
-  def test_exclude_negative_fail_message
+  test "exclude negative fail message" do
     obj = exclude(4)
     obj.matches?([4,5,6])
     
@@ -490,104 +490,104 @@ class TestAThing < MiniTest::Unit::TestCase
   end
   
   # raise_error
-  def test_raises_error
+  test "raises error" do
     lambda { raise "FAIL" }.should raise_error
   end
   
-  def test_raises_error_fail
+  test "raises error fail" do
     lambda {
       lambda { "WIN" }.should raise_error
     }.should raise_error(MiniTest::Assertion)
   end
   
-  def test_raise_error_negative_raises_error
+  test "raise error negative raises error" do
     lambda { "WIN" }.should_not raise_error
   end
   
-  def test_raise_error_negative_raises_error_fail
+  test "raise error negative raises error fail" do
     lambda {
       lambda { raise "FAIL" }.should_not raise_error
     }.should raise_error(MiniTest::Assertion)
   end
   
-  def test_raise_error_raises_specific_error
+  test "raise error raises specific error" do
     lambda { raise TypeError }.should raise_error(TypeError)
   end
   
-  def test_raise_error_raises_specific_error_fail_with_no_error
+  test "raise error raises specific error fail with no error" do
     lambda {
       lambda { "WIN" }.should raise_error(TypeError)
     }.should raise_error(MiniTest::Assertion)
   end
   
-  def test_raise_error_raises_specific_error_fail_with_different_error
+  test "raise error raises specific error fail with different error" do
     lambda {
       lambda { raise StandardError }.should raise_error(TypeError)
     }.should raise_error(MiniTest::Assertion)
   end
   
-  def test_raise_error_error_fail_message
+  test "raise error error fail message" do
     obj = raise_error(TypeError)
     obj.matches?(lambda { raise NameError })
     
     obj.failure_message.should =~ /Expected #<(.*)> to raise TypeError, but NameError was raised instead./
   end
   
-  def test_raise_error_error_fail_message_when_no_error
+  test "raise error error fail message when no error" do
     obj = raise_error(TypeError)
     obj.matches?(lambda { "moop" })
     
     obj.failure_message.should =~ /Expected #<(.*)> to raise TypeError, but none was raised./
   end
   
-  def test_raise_error_error_negative_fail_message
+  test "raise error error negative fail message" do
     obj = raise_error(TypeError)
     obj.matches?(lambda { raise TypeError })
     
     obj.negative_failure_message.should =~ /Expected #<(.*)> to not raise TypeError./
   end
   
-  def test_raise_error_string_argument_message
+  test "raise error string argument message" do
     lambda {raise "message"}.should raise_error("message")
   end
   
-  def test_string_argument_message_fails_no_error
+  test "string argument message fails no error" do
     lambda do
       lambda { 1 }.should raise_error("message")
       
     end.should raise_error
   end
   
-  def test_raise_error_string_argument_message_fails_wrong_message
+  test "raise error string argument message fails wrong message" do
     lambda do
       lambda { raise "other message" }.should raise_error("message")
     end.should raise_error
   end
   
-  def test_raise_error_regexp_argument_message
+  test "raise error regexp argument message" do
     lambda {raise "message"}.should raise_error(/essa/)
   end
   
-  def test_raise_error_regexp_argument_message_fails_no_error
+  test "raise error regexp argument message fails no error" do
     lambda do
       lambda { 1 }.should raise_error(/essa/)
     end.should raise_error
   end
   
-  def test_raise_error_regexp_argument_message_fails_wrong_message
+  test "raise error regexp argument message fails wrong message" do
     lambda do
       lambda { raise "other message" }.should raise_error(/abc/)
     end.should raise_error(/matching/)
   end
   
   # throw
-  def test_throws_symbol
+  test "throws symbol" do
     lambda {
       throw :win
     }.should throw_symbol(:win)
   end
   
-  def test_throws_symbol_fails_with_different_symbol
+  test "throws symbol fails with different symbol" do
     lambda {
       lambda {
         throw :fail
@@ -595,13 +595,13 @@ class TestAThing < MiniTest::Unit::TestCase
     }.should raise_error(MiniTest::Assertion)
   end
   
-  def test_negative_throws_symbol
+  test "negative throws symbol" do
     lambda {
       "not this time!"
     }.should_not throw_symbol(:win)
   end
   
-  def test_negative_throws_symbol_fails_with_different_symbol
+  test "negative throws symbol fails with different symbol" do
     
     lambda{
       lambda {
@@ -611,21 +611,21 @@ class TestAThing < MiniTest::Unit::TestCase
   
   end
   
-  def test_throw_fail_message
+  test "throw fail message" do
     obj = throw_symbol(:fail)
     obj.matches?(lambda { throw :lame })
     
     obj.failure_message.should =~ /Expected #<(.*)> to throw :fail, but :lame was thrown instead./
   end
   
-  def test_throw_fail_message_when_no_symbol
+  test "throw fail message when no symbol" do
     obj = throw_symbol(:fail)
     obj.matches?(lambda { "moop" })
     
     obj.failure_message.should =~ /Expected #<(.*)> to throw :fail, but no symbol was thrown./
   end
   
-  def test_throw_negative_fail_message
+  test "throw negative fail message" do
     obj = throw_symbol(:fail)
     obj.matches?(lambda { throw :fail })
     

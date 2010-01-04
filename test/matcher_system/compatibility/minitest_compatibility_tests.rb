@@ -6,20 +6,20 @@ load File.dirname(__FILE__) + '/../../../lib/matchy.rb'
 MiniTest::Unit.autorun
 
 class TestAThing < MiniTest::Unit::TestCase
-  def test_equal_equal
+  test "equal equal" do
     1.should == 1
   end
   
-  def test_equal_equal_fails
+  test "equal equal fails" do
     #1.should == 2 
     lambda{ 1.should == 2 }.should raise_error
   end
   
-  def test_equal_equal_negative
+  test "equal equal negative" do
     1.should_not == 2
   end
   
-  def test_equal_equal_negative_fails
+  test "equal equal negative fails" do
     lambda{ 1.should_not == 1 }.should raise_error
   end
 end

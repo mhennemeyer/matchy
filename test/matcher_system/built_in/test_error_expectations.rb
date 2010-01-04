@@ -1,49 +1,49 @@
 require File.dirname(__FILE__) + '/../test_helper.rb'
 
 class TestErrorExpectations < Matchy.test_case_class
-  def test_raises_error
+  test "raises error" do
     lambda { raise "FAIL" }.should raise_error
   end
   
-  def test_raises_error_fail
+  test "raises error fail" do
     lambda {
       lambda { "WIN" }.should raise_error
     }.should raise_error(Matchy.assertion_failed_error)
   end
   
-  def test_negative_raises_error
+  test "negative raises error" do
     lambda { "WIN" }.should_not raise_error
   end
   
-  def test_negative_raises_error_fail
+  test "negative raises error fail" do
     lambda {
       lambda { raise "FAIL" }.should_not raise_error
     }.should raise_error(Matchy.assertion_failed_error)
   end
   
-  def test_raises_specific_error
+  test "raises specific error" do
     lambda { raise TypeError }.should raise_error(TypeError)
   end
   
-  def test_raises_specific_error_fail_with_no_error
+  test "raises specific error fail with no error" do
     lambda {
       lambda { "WIN" }.should raise_error(TypeError)
     }.should raise_error(Matchy.assertion_failed_error)
   end
   
-  def test_raises_specific_error_fail_with_different_error
+  test "raises specific error fail with different error" do
     lambda {
       lambda { raise StandardError }.should raise_error(TypeError)
     }.should raise_error(Matchy.assertion_failed_error)
   end
   
-  def test_throws_symbol
+  test "throws symbol" do
     lambda {
       throw :win
     }.should throw_symbol(:win)
   end
   
-  def test_throws_symbol_fails_with_different_symbol
+  test "throws symbol fails with different symbol" do
     lambda {
       lambda {
         throw :fail
@@ -51,13 +51,13 @@ class TestErrorExpectations < Matchy.test_case_class
     }.should raise_error(Matchy.assertion_failed_error)
   end
   
-  def test_negative_throws_symbol
+  test "negative throws symbol" do
     lambda {
       "not this time!"
     }.should_not throw_symbol(:win)
   end
   
-  def test_negative_throws_symbol_fails_with_different_symbol
+  test "negative throws symbol fails with different symbol" do
     
     lambda{
       lambda {
@@ -67,76 +67,76 @@ class TestErrorExpectations < Matchy.test_case_class
   
   end
   
-  def test_error_fail_message
+  test "error fail message" do
     obj = raise_error(TypeError)
     obj.matches?(lambda { raise NameError })
     
     obj.failure_message.should =~ /Expected #<(.*)> to raise TypeError, but NameError was raised instead./
   end
   
-  def test_error_fail_message_when_no_error
+  test "error fail message when no error" do
     obj = raise_error(TypeError)
     obj.matches?(lambda { "moop" })
     
     obj.failure_message.should =~ /Expected #<(.*)> to raise TypeError, but none was raised./
   end
   
-  def test_error_negative_fail_message
+  test "error negative fail message" do
     obj = raise_error(TypeError)
     obj.matches?(lambda { raise TypeError })
     
     obj.negative_failure_message.should =~ /Expected #<(.*)> to not raise TypeError./
   end
   
-  def test_throw_fail_message
+  test "throw fail message" do
     obj = throw_symbol(:fail)
     obj.matches?(lambda { throw :lame })
     
     obj.failure_message.should =~ /Expected #<(.*)> to throw :fail, but :lame was thrown instead./
   end
   
-  def test_throw_fail_message_when_no_symbol
+  test "throw fail message when no symbol" do
     obj = throw_symbol(:fail)
     obj.matches?(lambda { "moop" })
     
     obj.failure_message.should =~ /Expected #<(.*)> to throw :fail, but no symbol was thrown./
   end
   
-  def test_throw_negative_fail_message
+  test "throw negative fail message" do
     obj = throw_symbol(:fail)
     obj.matches?(lambda { throw :fail })
     
     obj.negative_failure_message.should =~ /Expected #<(.*)> to not throw :fail./
   end
   
-  def test_string_argument_message
+  test "string argument message" do
     lambda {raise "message"}.should raise_error("message")
   end
   
-  def test_string_argument_message_fails_no_error
+  test "string argument message fails no error" do
     lambda do
       lambda { 1 }.should raise_error("message")
       
     end.should raise_error
   end
   
-  def test_string_argument_message_fails_wrong_message
+  test "string argument message fails wrong message" do
     lambda do
       lambda { raise "other message" }.should raise_error("message")
     end.should raise_error
   end
   
-  def test_regexp_argument_message
+  test "regexp argument message" do
     lambda {raise "message"}.should raise_error(/essa/)
   end
   
-  def test_regexp_argument_message_fails_no_error
+  test "regexp argument message fails no error" do
     lambda do
       lambda { 1 }.should raise_error(/essa/)
     end.should raise_error
   end
   
-  def test_regexp_argument_message_fails_wrong_message
+  test "regexp argument message fails wrong message" do
     lambda do
       lambda { raise "other message" }.should raise_error(/abc/)
     end.should raise_error(/matching/)

@@ -6,47 +6,47 @@ class TestDefMatcher < Matchy.test_case_class
     @obj = Object.new
   end
     
-  def test_defines_method
+  test "defines method" do
     def_matcher :method_ do |given, matcher, args|
     end
     self.should respond_to(:method_)
   end
   
-  def test_object_responds_to_matches
+  test "object responds to matches" do
     def_matcher :method_ do |given, matcher, args|
     end
     method_.should respond_to(:matches?)
   end
   
-  def test_fail_positive
+  test "fail positive" do
     def_matcher :matcher do |given, matcher, args|
       false
     end
     lambda {1.should matcher}.should raise_error
   end
   
-  def test_pass_positive
+  test "pass positive" do
     def_matcher :matcher do |given, matcher, args|
       true
     end
     1.should matcher
   end
   
-  def test_fail_negative
+  test "fail negative" do
     def_matcher :matcher do |given, matcher, args|
       true
     end
     lambda {1.should_not matcher}.should raise_error
   end
   
-  def test_pass_negative
+  test "pass negative" do
     def_matcher :matcher do |given, matcher, args|
       false
     end
     1.should_not matcher
   end
   
-  def test_takes_arguments
+  test "takes arguments" do
     def_matcher :matcher do |given, matcher, args|
       $args = args
       true
@@ -55,7 +55,7 @@ class TestDefMatcher < Matchy.test_case_class
     $args.should eql([1,2,3])
   end
   
-  def test_received_method
+  test "received method" do
     def_matcher :matcher do |given, matcher, args|
       $msgs = matcher.msgs
       true
@@ -64,7 +64,7 @@ class TestDefMatcher < Matchy.test_case_class
     $msgs[0].name.should eql(:method1)
   end
   
-  def test_received_method_takes_args
+  test "received method takes args" do
     def_matcher :matcher do |given, matcher, args|
       $msgs = matcher.msgs
       true
@@ -73,7 +73,7 @@ class TestDefMatcher < Matchy.test_case_class
     $msgs[0].args.should eql([1,2,3])
   end
   
-  def test_received_method_takes_block
+  test "received method takes block" do
     def_matcher :matcher do |given, matcher, args|
       $msgs = matcher.msgs
       true
@@ -82,7 +82,7 @@ class TestDefMatcher < Matchy.test_case_class
     $msgs[0].block.call.should eql("Hello, World!")
   end
   
-  def test_received_method_chained
+  test "received method chained" do
     def_matcher :matcher do |given, matcher, args|
       $msgs = matcher.msgs
       true
