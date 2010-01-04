@@ -2,16 +2,14 @@ require 'rubygems'
 require 'minitest/unit'
 FORCE_MINITEST = true
 load File.dirname(__FILE__) + '/../../../lib/matchy.rb'
+Matchy.load_testing_framework
 
-MiniTest::Unit.autorun
-
-class TestAThing < MiniTest::Unit::TestCase
+testing "A Thing", :type => MiniTest::Unit::TestCase do 
   test "equal equal" do
     1.should == 1
   end
   
   test "equal equal fails" do
-    #1.should == 2 
     lambda{ 1.should == 2 }.should raise_error
   end
   

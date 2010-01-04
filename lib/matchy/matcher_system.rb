@@ -4,6 +4,7 @@ require 'matcher_system/expectation_builder'
 require 'matcher_system/modals'
 require 'matcher_system/matcher_builder'
 require 'matcher_system/def_matcher'
+require 'matcher_system/custom_matcher'
 
 require 'matcher_system/built_in/enumerable_expectations'
 require 'matcher_system/built_in/error_expectations'

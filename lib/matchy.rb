@@ -58,5 +58,6 @@ end
 
 Matchy.test_case_class.send(:include, Matchy::Expectations::TestCaseExtensions)
 
-include Matchy::DefMatcher
+include Matchy::DefMatcher # should be deprecated soon
+include Matchy::CustomMatcher
 

@@ -8,7 +8,7 @@ end
 
 testing "Custom TestCase", :type => MyTestCase do
   test "says hello" do
-    assert_equal hello, "hello"
+    hello.should be("hello")
   end
 end
 

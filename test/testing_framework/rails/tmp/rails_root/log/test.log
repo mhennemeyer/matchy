@@ -1,0 +1,21 @@
+
+
+Processing MyModelsController#index (for 0.0.0.0 at 2010-01-04 15:33:15) [GET]
+  [4;36;1mMyModel Load (0.1ms)[0m   [0;1mSELECT * FROM "my_models" [0m
+Rendering template within layouts/my_models
+Rendering my_models/index
+Completed in 10ms (View: 8, DB: 0) | 200 OK [http://test.host/my_models]
+
+
+Processing MyModelsController#index (for 0.0.0.0 at 2010-01-04 15:33:15) [GET]
+  [4;35;1mMyModel Load (0.1ms)[0m   [0mSELECT * FROM "my_models" [0m
+Rendering template within layouts/my_models
+Rendering my_models/index
+Completed in 1ms (View: 1, DB: 0) | 200 OK [http://test.host/my_models]
+
+
+Processing MyModelsController#index (for 0.0.0.0 at 2010-01-04 15:33:15) [GET]
+  [4;36;1mMyModel Load (0.1ms)[0m   [0;1mSELECT * FROM "my_models" [0m
+Rendering template within layouts/my_models
+Rendering my_models/index
+Completed in 1ms (View: 0, DB: 0) | 200 OK [http://test.host/my_models]

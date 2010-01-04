@@ -14,7 +14,7 @@ testing "Scoping" do
   
   testing "in nested context" do
     test "has access to included module" do
-      assert_equal hello, "Hello"
+      hello.should eql("Hello")
     end
   end
 end
@@ -26,12 +26,12 @@ testing "Methods defined in context" do
   end
   
   test "has access to method defined in context" do
-    assert_equal meth2, "meth2"
+    meth2.should eql("meth2")
   end
 
   testing "in nested context" do
     test "has access to method defined in parent context" do
-      assert_equal meth2, "meth2"
+      meth2.should eql("meth2")
     end
   end
 end

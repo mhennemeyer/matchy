@@ -12,6 +12,11 @@ module Matchy
         end
 
         attr_accessor :positive_msg, :negative_msg, :msgs
+        alias :positive_failure_message  :positive_msg
+        alias :positive_failure_message= :positive_msg=
+        alias :negative_failure_message  :negative_msg
+        alias :negative_failure_message= :negative_msg=
+        alias :chained_messages  :msgs
         attr_reader :matcher_name
         def initialize(match_block, test_case)
           @match_block, @test_case = match_block, test_case

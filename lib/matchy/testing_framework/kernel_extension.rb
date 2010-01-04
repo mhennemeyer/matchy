@@ -1,6 +1,6 @@
 module Kernel
   def testing(*args, &block)
-    super_class = (Hash === args.last && (args.last[:type] || args.last[:testcase])) || Test::Unit::TestCase 
+    super_class = (Hash === args.last && (args.last[:type] || args.last[:testcase])) || Matchy.test_case_class 
     super_class.class_eval {extend Testing::TestCaseClassMethods}
     cls = Class.new(super_class)
     cnst, desc = args

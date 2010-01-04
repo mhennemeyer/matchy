@@ -1,6 +1,6 @@
 require File.dirname(__FILE__) + '/../test_helper.rb'
 
-class TestMatcherBuilder < Matchy.test_case_class
+testing Matchy::MatcherBuilder do
   include Matchy::MatcherBuilder
 
   def setup

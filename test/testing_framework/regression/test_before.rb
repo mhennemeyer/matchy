@@ -17,16 +17,16 @@ testing "top level" do
       @horst = "NoHorst!"
     end
     
-    test "there should be no horst" do
-      assert_equal @horst, "NoHorst!"
+    test "there should be NoHorst" do
+      @horst.should eql("NoHorst!")
     end
     
     test "Inge should be here" do
-      assert_equal @inge, "Inge"
+      @inge.should be("Inge")
     end  
   end
   
   test "Horst should still be Horst" do
-    assert_equal @horst, "Horst"
+    @horst.should be("Horst")
   end
 end

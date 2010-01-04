@@ -22,8 +22,9 @@ for supported_rails_version in SUPPORTED_RAILS_VERSIONS
   # require rails_test_helper
   require current_dir + "/tmp/rails_root/test/test_helper.rb"
 
-  # require testing lib
-  require current_dir + "/../../lib/testing.rb"
+  # require matchy
+  require current_dir + "/../../../lib/matchy.rb"
+  Matchy.load_testing_framework
 
 
   # Tests
@@ -35,19 +36,19 @@ for supported_rails_version in SUPPORTED_RAILS_VERSIONS
     end
     
     test "should get index" do
-       assert_response :success
-       assert_not_nil assigns(:my_models)
-     end
+      @response.should be_success
+      assigns(:my_models).should_not be_nil
+    end
 
      testing "nested TestCase" do
        test "should still work" do
-          assert_response :success
-          assert_not_nil assigns(:my_models)
+          @response.should be_success
+          assigns(:my_models).should_not be_nil
        end
      end
 
      test "knows about my_models_path" do
-       assert_equal my_models_path, "/my_models"
+       my_models_path.should eql("/my_models")
      end
   end
 
@@ -60,12 +61,12 @@ for supported_rails_version in SUPPORTED_RAILS_VERSIONS
   testing MyModelsHelper, :type => ActionView::TestCase do
 
     test "is helpful" do
-      assert_match /helpful/, helper_method
+      helper_method.should =~ /helpful/
     end
   
     testing "nested TestCase" do
       test "is still helpful" do
-        assert_match /helpful/, helper_method
+        helper_method.should =~ /helpful/
       end
     end  
   end

@@ -1,8 +1,8 @@
 require File.dirname(__FILE__) + '/../test_helper.rb'
 
-class TestOperatorExpectations < Matchy.test_case_class
-  # EQUALS (==)
-  test "equals" do
+testing "Operator Expectations" do
+
+  test "equals (==)" do
     3.should == 3
   end
   
@@ -21,9 +21,8 @@ class TestOperatorExpectations < Matchy.test_case_class
       3.should_not == 3
     }.should raise_error(Matchy.assertion_failed_error)
   end
-  
-  # LESS THAN (<)
-  test "less than" do
+
+  test "less than (<)" do
     3.should < 5
   end
   

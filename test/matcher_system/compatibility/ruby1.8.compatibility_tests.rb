@@ -2,7 +2,8 @@
 require 'rubygems'
 require 'test/unit'
 require File.dirname(__FILE__) + '/../../../lib/matchy.rb'
-class TestAThing < Test::Unit::TestCase
+Matchy.load_testing_framework
+testing "A Thing" do
   
   def setup
     @obj = Object.new

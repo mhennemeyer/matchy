@@ -1,19 +1,23 @@
 # Eval this file with ruby 1.9
 
-require 'test/unit'
+require 'minitest/unit'
 require File.dirname(__FILE__) + '/../../../lib/matchy.rb'
-class TestAThing < MiniTest::Unit::TestCase
-  
+Matchy.load_testing_framework
+
+raise "MiniTest not properly present" unless Matchy.minitest?
+
+testing "A Thing" do
+  puts self.class
   def setup
     @obj = Object.new
   end
   
   # ==
-  test "operator eql eql" do
+  test "operator ==" do
     1.should == 1
   end
   
-  test "operator eql eql fails" do
+  test "operator == fails" do
     lambda {1.should == 2}.should raise_error
   end
   

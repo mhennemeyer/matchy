@@ -7,7 +7,7 @@ testing "Prevent tests from beeing handed down" do
   
   $testcase = self
   test "does not inherit tests" do
-    assert !$testcase.instance_methods.include?(:test_test_test)
+    $testcase.instance_methods.should_not include(:test_test_test)
   end
   
   test "doesn't make testname unusable" do
@@ -21,11 +21,11 @@ testing "Prevent tests from beeing handed down" do
     end
     $testcase = self
     test "does not inherit tests from outer description block" do
-      assert !$testcase.instance_methods.include?(:test_does_not_inherit_tests)
+      $testcase.instance_methods.should_not include(:test_does_not_inherit_tests)
     end
     
     test "does not inherit tests from outer description block that are defined after nesting" do
-      assert !$testcase.instance_methods.include?(:test_does_not_inherit_tests_that_are_defined_after_nesting)
+      $testcase.instance_methods.should_not include(:test_does_not_inherit_tests_that_are_defined_after_nesting)
     end
       
     test "doesn't make testname unusable" do
@@ -34,6 +34,6 @@ testing "Prevent tests from beeing handed down" do
   end
   
   test "does not inherit tests that are defined after nesting" do
-    assert_nil @var_from_nesting
+    @var_from_nesting.should be_nil
   end
 end

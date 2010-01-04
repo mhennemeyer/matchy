@@ -10,6 +10,6 @@ testing "Testing with mocha" do
   end
   
   test "still works" do
-    assert_equal 1, 1
+    1.should eql(1)
   end
 end

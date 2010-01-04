@@ -1,6 +1,6 @@
 require File.dirname(__FILE__) + '/../test_helper.rb'
 
-class TestErrorExpectations < Matchy.test_case_class
+testing "Error Expectations" do
   test "raises error" do
     lambda { raise "FAIL" }.should raise_error
   end

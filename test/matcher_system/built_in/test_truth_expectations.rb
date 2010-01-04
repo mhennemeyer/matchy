@@ -10,7 +10,7 @@ class Exister
   end
 end
 
-class TestTruthExpectations < Matchy.test_case_class
+testing "Truth Expectations" do
   
   def setup
     @obj = Object.new

@@ -11,7 +11,7 @@ testing "top level EG contains a before and deeper nested group" do
       testing "4" do
         testing "5" do
           test "should know var_defined_in_top_level_e_g" do
-            assert_equal @var_defined_in_top_level_e_g, "Horst"
+            @var_defined_in_top_level_e_g.should be("Horst")
           end
         end
       end

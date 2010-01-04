@@ -1,6 +1,6 @@
 require File.dirname(__FILE__) + '/../test_helper.rb'
 
-class TestExpectationBuilder < Matchy.test_case_class
+testing "build_expectation" do
   
   def setup
     @obj = Object.new

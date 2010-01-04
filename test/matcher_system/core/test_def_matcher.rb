@@ -1,6 +1,6 @@
 require File.dirname(__FILE__) + '/../test_helper.rb'
 
-class TestDefMatcher < Matchy.test_case_class
+testing "def_matcher" do
   
   def setup 
     @obj = Object.new

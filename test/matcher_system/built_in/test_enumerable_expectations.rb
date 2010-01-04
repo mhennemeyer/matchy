@@ -1,6 +1,6 @@
 require File.dirname(__FILE__) + '/../test_helper.rb'
 
-class TestEnumerableExpectations < Matchy.test_case_class
+testing "Enumerable Expectations" do
   test "include" do
     [1,2,3,4].should include(4)
   end

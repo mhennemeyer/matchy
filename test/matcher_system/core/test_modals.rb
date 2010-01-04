@@ -1,6 +1,6 @@
 require File.dirname(__FILE__) + '/../test_helper.rb'
 
-class TestModals < Matchy.test_case_class
+testing Matchy::Modals do
   def setup
     @expectation = build_matcher() {|r,m,a| true}
     @bad_expectation = build_matcher() {|r,m,a| false}
