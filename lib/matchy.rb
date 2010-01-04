@@ -3,15 +3,15 @@ $:.unshift(File.dirname(__FILE__)) unless
 unless defined?(Test::Unit) || defined?(MiniTest)
   raise "No Testing library present! Either Test::Unit or MiniTest must be required before loading matchy" 
 end
-# Matchy should work with either test/unit 
-# or minitest
+
+# Matchy should work with either test/unit or minitest
 module Matchy
   def self.classic?
     # We have to decide if we really have a 
     # suite of MiniTest Tests.
     # Rails for example defines MiniTest, so to only check for
     # defined?(MiniTest) would be malicious
-    !defined?(FORCE_MINITEST) && defined?(TestUnit) && defined?(Test::Unit::TestCase) && !minitest_tu_shim?
+    !defined?(FORCE_MINITEST) && defined?(Test::Unit) && defined?(Test::Unit::TestCase) && !minitest_tu_shim?
   end
   
   def self.minitest?
@@ -47,8 +47,6 @@ require 'matchy/built_in/truth_expectations'
 require 'matchy/built_in/operator_expectations'
 require 'matchy/built_in/change_expectations'
 
-
-# Hack of Evil.
 # Track the current testcase and 
 # provide it to the operator matchers.
 Matchy.test_case_class.class_eval do
