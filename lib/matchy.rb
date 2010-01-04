@@ -36,7 +36,7 @@ module Matchy
       minitest? ? MiniTest::Assertion : Test::Unit::AssertionFailedError
     end
     
-    def enable_testing_framework
+    def load_testing_framework
       require 'matchy/testing_framework'
     end
   end
